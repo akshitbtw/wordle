@@ -8,14 +8,14 @@ npm run dev -->
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wordle</title>
-  <link href="/dist/output.css" rel="stylesheet">
-</head>
-<!-- bg-[#121213] -->
-<body class=" justify-center"> 
-  <!-- component -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Satisfy&display=swap" rel="stylesheet" />
+  <link href="/dist/output.css" rel="stylesheet">
+</head>
+<!-- bg-[#121213] -->
+
+<body>
   <style>
     html {
       font-family: 'Inter', sans-serif;
@@ -23,6 +23,7 @@ npm run dev -->
 
     /* GTA Text */
     main .title {
+      font-family: 'Inter', sans-serif;
       text-shadow: 0 0 0.125em rgb(192 38 211 / 0.5), 0 0 0.45em currentColor;
     }
 
@@ -42,26 +43,40 @@ npm run dev -->
       position: absolute;
       transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
     }
+
+    /* Glass Effect */
+    main .grid-container{
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border:1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.634);
+    }
+    main .grid-container *{
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 10px;
+      border:1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.634);
+    }
   </style>
-  <main
-    class="grid min-h-screen place-content-center place-items-center overflow-hidden bg-gradient-to-b from-slate-900 to-black">
-    <!-- 
-    This is using Tailwind CSS "before:"
-    you can directly place it in CSS
-    but I prefer to do that in here, to so I can use bg-gradient too
-  -->
-  <!-- class="relative grid place-content-center place-items-center gap-2 
+  <main class="grid min-h-screen place-content-center place-items-center overflow-hidden bg-gradient-to-b from-slate-900 to-black">
+    <!-- class="grid min-h-screen place-content-center place-items-center overflow-hidden bg-gradient-to-b from-slate-900 to-black" -->
+    <!-- class="relative grid place-content-center place-items-center gap-2 
       before:bg-gradient-to-t before:from-teal-500/70 before:via-fuchsia-600 before:to-transparent before:blur-xl before:filter z-10" -->
-    <div id="main_container"
-    class="relative grid place-content-center place-items-center gap-2 
+    <div id="main_container" class="relative grid place-content-center place-items-center gap-2 
     before:bg-gradient-to-t before:from-teal-500/70 before:via-fuchsia-600 before:to-transparent before:blur-xl before:filter z-10">
-      <h1 class="title text-7xl font-black text-teal-500">WORDLE</h1>
-      <h2 class="cursive text-6xl font-thin text-fuchsia-600">By Akshit</h2>
+      <h1 class="title text-7xl font-black text-teal-500 pt-1">WORDLE</h1>
+      <h2 class="cursive text-6xl font-thin text-fuchsia-600 pb-5">By Akshit</h2>
     </div>
     <div
-      class="grid-container grid gap-2 grid-cols-[100px_100px_100px_100px_100px] grid-rows-[100px_100px_100px_100px_100px_100px] p-4 justify-center m-4 z-20 [&>*]:shadow-[0px_0px_6px_2.5px_inset] [&>*]:shadow-white
+      class="grid-container grid gap-2 grid-cols-[100px_100px_100px_100px_100px] grid-rows-[100px_100px_100px_100px_100px_100px] p-4 m-4 z-10
       
-        [&>*]:text-5xl [&>*]:text-sky-50 [&>*]:border-4 [&>*]:border-white [&>*]:text-center [&>*]:p-5 [&>*]:rounded-lg ">
+      [&>*]:flex [&>*]:items-center [&>*]:justify-center
+      [&>*]:shadow-[0px_0px_3px_2.5px_inset]     [&>*]:shadow-sky-100 
+        [&>*]:text-5xl [&>*]:text-sky-50 [&>*]:border-2 [&>*]:border-gray-400  [&>*]:rounded-lg">
       <div></div>
       <div></div>
       <div></div>

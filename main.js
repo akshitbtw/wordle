@@ -24,7 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // console.log(enteredWord + " " + wordToBeGuessed);
     if (enteredWord === wordToBeGuessed) {
       for (let x = 0; x < 5; x++) {
-        grid[row][x].style.backgroundColor = 'green';
+        // grid[row][x].style.backgroundColor = 'green';
+        grid[row][x].style.boxShadow = "0px 0px 10px 4px #39FF14 inset";
+        grid[row][x].style.border = "#39FF14";
       }
       return true;
     }
@@ -42,7 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
       for (let i = 0; i < enteredWord.length; i++) {
         if (occurrences.has(enteredWord[i])) {
           if (enteredWord[i] === indexes[i]) {
-            grid[row][i].style.backgroundColor = 'green';
+            grid[row][i].style.boxShadow = "0px 0px 10px 4px #39FF14 inset";
+            grid[row][i].style.border = "#39FF14";
             occurrences.set(enteredWord[i], occurrences.get(enteredWord[i]) - 1);
             indexes[i] = '-1'; // marked so that this index is not evaluated in the below loop
           }
@@ -55,15 +58,18 @@ document.addEventListener("DOMContentLoaded", () => {
             // check if occurrence is greater than 0
             if (occurrences.get(enteredWord[i]) > 0) {
               // since at same index is checked before this loop, therefore it must be present at wrong index, that is why changing the tile color to yellow
-              grid[row][i].style.backgroundColor = 'yellow';
+              grid[row][i].style.boxShadow = "0px 0px 10px 4px #FFFF00 inset";
+              grid[row][i].style.border = "#FFFF00";
               occurrences.set(enteredWord[i], occurrences.get(enteredWord[i]) - 1);
             }
             else {
-              grid[row][i].style.backgroundColor = 'grey';
+              grid[row][i].style.boxShadow = "0px 0px 10px 5px #D5D6D7 inset";
+              grid[row][i].style.border = "#D5D6D7";
             }
           }
           else {
-            grid[row][i].style.backgroundColor = 'grey';
+            grid[row][i].style.boxShadow = "0px 0px 10px 5px #D5D6D7 inset";
+            grid[row][i].style.border = "#D5D6D7";
           }
         }
       }
