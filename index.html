@@ -10,8 +10,8 @@ npm run dev -->
   <title>Wordle</title>
   <link href="/dist/output.css" rel="stylesheet">
 </head>
-
-<body class=" justify-center bg-[#121213]">
+<!-- bg-[#121213] -->
+<body class=" justify-center"> 
   <!-- component -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -50,15 +50,18 @@ npm run dev -->
     you can directly place it in CSS
     but I prefer to do that in here, to so I can use bg-gradient too
   -->
+  <!-- class="relative grid place-content-center place-items-center gap-2 
+      before:bg-gradient-to-t before:from-teal-500/70 before:via-fuchsia-600 before:to-transparent before:blur-xl before:filter z-10" -->
     <div id="main_container"
-      class="relative grid place-content-center place-items-center gap-2 before:bg-gradient-to-t before:from-teal-500/70 before:via-fuchsia-600 before:to-transparent before:blur-xl before:filter z-10">
+    class="relative grid place-content-center place-items-center gap-2 
+    before:bg-gradient-to-t before:from-teal-500/70 before:via-fuchsia-600 before:to-transparent before:blur-xl before:filter z-10">
       <h1 class="title text-7xl font-black text-teal-500">WORDLE</h1>
       <h2 class="cursive text-6xl font-thin text-fuchsia-600">By Akshit</h2>
     </div>
     <div
-      class="grid-container grid gap-2 grid-cols-[100px_100px_100px_100px_100px] grid-rows-[100px_100px_100px_100px_100px_100px] p-4 justify-center m-4 z-20
-        
-        [&>*]:text-5xl [&>*]:text-sky-50 [&>*]:border-4 [&>*]:border-slate-500 [&>*]:text-center [&>*]:p-5 [&>*]:rounded-lg">
+      class="grid-container grid gap-2 grid-cols-[100px_100px_100px_100px_100px] grid-rows-[100px_100px_100px_100px_100px_100px] p-4 justify-center m-4 z-20 [&>*]:shadow-[0px_0px_6px_2.5px_inset] [&>*]:shadow-white
+      
+        [&>*]:text-5xl [&>*]:text-sky-50 [&>*]:border-4 [&>*]:border-white [&>*]:text-center [&>*]:p-5 [&>*]:rounded-lg ">
       <div></div>
       <div></div>
       <div></div>
