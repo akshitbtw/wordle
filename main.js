@@ -1,6 +1,7 @@
 // npx tailwindcss -i ./style.css -o ./dist/output.css --watch
 // npm run dev
 import './style.css'
+
 document.addEventListener("DOMContentLoaded", () => {
   var grid = [];
   let row = 0, col = 0, enteredWord = "";
