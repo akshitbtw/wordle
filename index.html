@@ -61,18 +61,40 @@ npm run dev -->
       border:1px solid rgba(255, 255, 255, 0.18);
       box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.634);
     }
+    #icon {
+        position: absolute;
+        right: 25px;
+    }
+    #icon img {
+        position: relative;
+        top: 0px;
+        width: 50px;  
+        height: 50px;
+        margin-top: 25px;
+        border-radius: 25px;
+        /* border: 5px solid; */
+        border-color: white;
+        box-shadow: 0 0 13px 5px white;
+
+    }
   </style>
+  <div id = "icon">
+    <button type="submit">
+      <img src="./public/circle-question-regular.png" alt="buttonpng"/>
+    </button>
+  </div>
   <main class="grid min-h-screen place-content-center place-items-center overflow-hidden bg-gradient-to-b from-slate-900 to-black">
     <!-- class="grid min-h-screen place-content-center place-items-center overflow-hidden bg-gradient-to-b from-slate-900 to-black" -->
     <!-- class="relative grid place-content-center place-items-center gap-2 
       before:bg-gradient-to-t before:from-teal-500/70 before:via-fuchsia-600 before:to-transparent before:blur-xl before:filter z-10" -->
     <div id="main_container" class="relative grid place-content-center place-items-center gap-2 
-    before:bg-gradient-to-t before:from-teal-500/70 before:via-fuchsia-600 before:to-transparent before:blur-xl before:filter z-10">
+    before:bg-gradient-to-t before:from-teal-500/70 before:via-fuchsia-600 before:to-transparent before:blur-xl before:filter">
       <h1 class="title text-7xl font-black text-teal-500 pt-1">WORDLE</h1>
       <h2 class="cursive text-6xl font-thin text-fuchsia-600 pb-5">By Akshit</h2>
     </div>
+    
     <div
-      class="grid-container grid gap-2 grid-cols-[100px_100px_100px_100px_100px] grid-rows-[100px_100px_100px_100px_100px_100px] p-4 m-4 z-10
+      class="grid-container grid gap-2 grid-cols-[100px_100px_100px_100px_100px] grid-rows-[100px_100px_100px_100px_100px_100px] p-4 m-4
       
       [&>*]:flex [&>*]:items-center [&>*]:justify-center
       [&>*]:shadow-[0px_0px_3px_2.5px_inset]     [&>*]:shadow-sky-100 
