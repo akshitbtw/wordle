@@ -91,7 +91,26 @@ npm run dev -->
 
     .modal::backdrop {
       background-color: black;
-      opacity: .4;
+      opacity: 0.5;
+    }
+
+    .modal[open] {
+      animation: fade-in 500ms forwards;
+    }
+
+    .modal[open]::backdrop {
+      animation: fade-in-backdrop 500ms forwards;
+    }
+
+    .modal[closing] {
+      display: block;
+      pointer-events: none;
+      inset: 0;
+      animation: fade-out 500ms forwards;
+    }
+
+    .modal[closing]::backdrop {
+      animation: fade-out 500ms forwards;
     }
 
     .heading {
@@ -114,22 +133,55 @@ npm run dev -->
       font-size: 1.4rem;
     }
 
-    .modal-grid-container *{
+    .modal-grid-container * {
       font-family: 'Noto Sans', sans-serif;
       border-radius: 0.375rem;
     }
-    .modal-grid-container #b1{
+
+    .modal-grid-container #b1 {
       border: #39FF14;
       box-shadow: 0px 0px 6px 3px #39FF14 inset;
     }
-    .modal-grid-container #b2{
+
+    .modal-grid-container #b2 {
       border: #FFFF00;
       box-shadow: 0px 0px 6px 3px #FFFF00 inset;
-    }.modal-grid-container #b3{
+    }
+
+    .modal-grid-container #b3 {
       border: #D5D6D7;
       box-shadow: 0px 0px 7px 4px #D5D6D7 inset;
     }
 
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fade-in-backdrop {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 0.5;
+      }
+    }
+
+    @keyframes fade-out {
+      0% {
+        opacity: 0.5;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
   </style>
   <div id="icon">
     <button class="openBtn" type="submit">
