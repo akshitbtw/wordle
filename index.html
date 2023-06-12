@@ -10,7 +10,9 @@ npm run dev -->
   <title>Wordle</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Satisfy&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&family=Arvo:wght@700&family=Poppins:wght@200&family=Righteous&family=Inter:wght@900&family=Satisfy&display=swap"
+    rel="stylesheet" />
   <link href="/dist/output.css" rel="stylesheet">
 </head>
 <!-- bg-[#121213] -->
@@ -79,7 +81,7 @@ npm run dev -->
     }
 
     .modal {
-      width: 50%;
+      width: 45%;
       height: 70%;
       background-color: black;
       color: white;
@@ -91,10 +93,47 @@ npm run dev -->
       background-color: black;
       opacity: .4;
     }
+
+    .heading {
+      font-family: 'Righteous', cursive;
+      font-size: 2.2rem;
+      line-height: 2.5rem;
+    }
+
+    .subHeading {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+    }
+
+    .normalText {
+      font-family: 'Noto Sans', sans-serif;
+    }
+
+    .exampleH {
+      font-family: 'Righteous', cursive;
+      font-size: 1.4rem;
+    }
+
+    .modal-grid-container *{
+      font-family: 'Noto Sans', sans-serif;
+      border-radius: 0.375rem;
+    }
+    .modal-grid-container #b1{
+      border: #39FF14;
+      box-shadow: 0px 0px 6px 3px #39FF14 inset;
+    }
+    .modal-grid-container #b2{
+      border: #FFFF00;
+      box-shadow: 0px 0px 6px 3px #FFFF00 inset;
+    }.modal-grid-container #b3{
+      border: #D5D6D7;
+      box-shadow: 0px 0px 7px 4px #D5D6D7 inset;
+    }
+
   </style>
   <div id="icon">
     <button class="openBtn" type="submit">
-      <img src="./public/circle-question-regular.png" alt="howtoplaypng" />
+      <img src="./circle-question-regular.png" alt="howtoplaypng" />
     </button>
   </div>
   <main
@@ -112,8 +151,7 @@ npm run dev -->
     <div class="grid-container grid gap-2 grid-cols-[100px_100px_100px_100px_100px] grid-rows-[100px_100px_100px_100px_100px_100px] p-4 m-4
       
       [&>*]:flex [&>*]:items-center [&>*]:justify-center
-      [&>*]:shadow-[0px_0px_3px_2.5px_inset] [&>*]:shadow-sky-100 
-      [&>*]:text-5xl [&>*]:text-sky-50 [&>*]:border-2 [&>*]:border-gray-400  [&>*]:rounded-lg">
+      [&>*]:text-5xl [&>*]:text-sky-50 [&>*]:rounded-lg">
       <div></div>
       <div></div>
       <div></div>
@@ -149,11 +187,61 @@ npm run dev -->
   </main>
 
   <dialog class="modal">
-    <h2>an interesting title</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora ab tenetur fugiat! Aut sint distinctio nesciunt
-      nemo labore modi dolorem voluptatum assumenda fugit possimus! Provident quas ullam officiis deserunt vel!</p>
-    <button class="closeBtn">close</button>
+    <div class="flex flex-col p-7">
+      <button class="closeBtn self-end text-black">
+        <img class="w-4" src="./cross.png" alt="close" />
+      </button>
+      <h1 class="heading pt-3">How To Play</h1>
+      <h2 class="subHeading font-semibold pt-1">Guess the Wordle in 6 tries.</h2>
+      <ul style="list-style-type: disc;" class="normalText p-4 pl-5 text-base">
+        <li>Each guess must be a valid 5-letter word.</li>
+        <li>The color of the tiles will change to show close your guess was to the word.</li>
+      </ul>
+      <h3 class="exampleH pt-1">Examples</h3>
+      <div
+        class="modal-grid-container font-bold grid grid-cols-[50px_50px_50px_50px_50px] mt-2 gap-2 grid-rows-[50px] [&>*]:flex [&>*]:items-center [&>*]:justify-center text-2xl [&>*]:border-white [&>*]:border-2">
+        <div id="b1">W</div>
+        <div>E</div>
+        <div>A</div>
+        <div>R</div>
+        <div>Y</div>
+      </div>
+      <h3 class="normalText text-base pt-2">
+        <bold>W</bold> is in the word and in the correct spot.
+      </h3>
+
+      <div
+        class="modal-grid-container font-bold grid grid-cols-[50px_50px_50px_50px_50px] mt-5 gap-2 grid-rows-[50px] [&>*]:flex [&>*]:items-center [&>*]:justify-center text-2xl [&>*]:border-white [&>*]:border-2">
+        <div>P</div>
+        <div id="b2">I</div>
+        <div>L</div>
+        <div>L</div>
+        <div>S</div>
+      </div>
+      <h3 class="normalText text-base pt-2">
+        <bold>I</bold> is in the word and in the wrong spot.
+      </h3>
+
+      <div
+        class="modal-grid-container font-bold grid grid-cols-[50px_50px_50px_50px_50px] mt-5 gap-2 grid-rows-[50px] [&>*]:flex [&>*]:items-center [&>*]:justify-center text-2xl [&>*]:border-white [&>*]:border-2">
+        <div>V</div>
+        <div>A</div>
+        <div>G</div>
+        <div id="b3">U</div>
+        <div>E</div>
+      </div>
+      <h3 class="normalText text-base pt-2">
+        <bold>U</bold> is not in the word in any spot.
+      </h3>
+
+    </div>
   </dialog>
+  <!-- <dialog class="modal">
+    <div class="grid">
+      <button class="closeBtn">close</button>
+
+    </div>
+  </dialog> -->
 
 </body>
 <script type="module" src="/main.js"></script>
