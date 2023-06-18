@@ -15,176 +15,10 @@ npm run dev -->
     rel="stylesheet" />
   <link href="/dist/output.css" rel="stylesheet">
 </head>
-<!-- bg-[#121213] -->
 
 <body>
-  <style>
-    html {
-      font-family: 'Inter', sans-serif;
-    }
-
-    main .title {
-      font-family: 'Inter', sans-serif;
-      text-shadow: 0 0 0.125em rgb(192 38 211 / 0.5), 0 0 0.45em currentColor;
-    }
-
-    main .cursive {
-      font-family: 'Satisfy', cursive;
-      text-shadow: 0 0 0.125em rgb(192 38 211 / 0.5), 0 0 0.45em currentColor;
-    }
-
-    /* Reflection Color */
-    main #main_container::before {
-      content: "";
-      width: 100%;
-      height: 100%;
-      top: 200%;
-      left: 0;
-      position: absolute;
-      transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
-    }
-
-    /* Glass Effect */
-    main .grid-container {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.634);
-    }
-
-    main .grid-container * {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.634);
-    }
-
-    #icon {
-      position: absolute;
-      right: 25px;
-    }
-
-    #icon img {
-      position: relative;
-      top: 0px;
-      width: 50px;
-      height: 50px;
-      margin-top: 25px;
-      border-radius: 25px;
-      /* border: 5px solid; */
-      border-color: white;
-      box-shadow: 0 0 13px 5px white;
-    }
-
-    .modal {
-      width: 45%;
-      height: 70%;
-      background-color: black;
-      color: white;
-      border-radius: 10px;
-      box-shadow: 0 0 13px 5px black;
-    }
-
-    .modal::backdrop {
-      background-color: black;
-      opacity: 0.5;
-    }
-
-    .modal[open] {
-      animation: fade-in 500ms forwards;
-    }
-
-    .modal[open]::backdrop {
-      animation: fade-in-backdrop 500ms forwards;
-    }
-
-    .modal[closing] {
-      display: block;
-      pointer-events: none;
-      inset: 0;
-      animation: fade-out 500ms forwards;
-    }
-
-    .modal[closing]::backdrop {
-      animation: fade-out 500ms forwards;
-    }
-
-    .heading {
-      font-family: 'Righteous', cursive;
-      font-size: 2.2rem;
-      line-height: 2.5rem;
-    }
-
-    .subHeading {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.5rem;
-    }
-
-    .normalText {
-      font-family: 'Noto Sans', sans-serif;
-    }
-
-    .exampleH {
-      font-family: 'Righteous', cursive;
-      font-size: 1.4rem;
-    }
-
-    .modal-grid-container * {
-      font-family: 'Noto Sans', sans-serif;
-      border-radius: 0.375rem;
-    }
-
-    .modal-grid-container #b1 {
-      border: #39FF14;
-      box-shadow: 0px 0px 6px 3px #39FF14 inset;
-    }
-
-    .modal-grid-container #b2 {
-      border: #FFFF00;
-      box-shadow: 0px 0px 6px 3px #FFFF00 inset;
-    }
-
-    .modal-grid-container #b3 {
-      border: #D5D6D7;
-      box-shadow: 0px 0px 7px 4px #D5D6D7 inset;
-    }
-
-    @keyframes fade-in {
-      0% {
-        opacity: 0;
-      }
-
-      100% {
-        opacity: 1;
-      }
-    }
-
-    @keyframes fade-in-backdrop {
-      0% {
-        opacity: 0;
-      }
-
-      100% {
-        opacity: 0.5;
-      }
-    }
-
-    @keyframes fade-out {
-      0% {
-        opacity: 0.5;
-      }
-
-      100% {
-        opacity: 0;
-      }
-    }
-  </style>
   <div id="icon">
-    <button class="openBtn" type="submit">
+    <button class="openBtn focus:outline-none" type="submit">
       <img src="./circle-question-regular.png" alt="howtoplaypng" />
     </button>
   </div>
@@ -288,12 +122,15 @@ npm run dev -->
 
     </div>
   </dialog>
-  <!-- <dialog class="modal">
-    <div class="grid">
-      <button class="closeBtn">close</button>
 
+  <dialog class="result-modal">
+    <div class="flex flex-col p-4">
+      <h1 class="result-heading Inter title self-center text-6xl"></h1>
+      <button  class="playAgain subHeading text-xl font-extrabold self-center text-white bg-teal-500 p-2 mt-8 rounded-lg outline-none">
+        PLAY AGAIN
+      </button>
     </div>
-  </dialog> -->
+  </dialog>
 
 </body>
 <script type="module" src="/main.js"></script>

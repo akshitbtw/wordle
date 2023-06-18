@@ -1,11 +1,9 @@
-// npx tailwindcss -i ./style.css -o ./dist/output.css --watch
-// npm run dev
 import './style.css'
 
 document.addEventListener("DOMContentLoaded", () => {
   var grid = [];
   let row = 0, col = 0, enteredWord = "";
-
+  let isCorrect = false;
   // loading the 2d array with grid child nodes
   const gridItems = document.querySelector(".grid-container").childNodes;
   let index = 1;
@@ -21,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let wordToBeGuessed = "trait";
   wordToBeGuessed = wordToBeGuessed.toUpperCase();
 
-  let algorithm = async (enteredWord, wordToBeGuessed, currentRow) => {
+  let algorithm = (enteredWord, wordToBeGuessed, currentRow) => {
     // console.log(enteredWord + " " + wordToBeGuessed);
     if (enteredWord === wordToBeGuessed) {
       for (let x = 0; x < 5; x++) {
@@ -87,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(`${key} = ${value}`);
       });
     }
-
+    return false;
   };
 
   let isValid = async (enteredWord) => {
@@ -103,43 +101,74 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("keydown", async (e) => {
     const isAlphabet = /^[a-zA-Z]$/.test(e.key);
-    if (isAlphabet && row < 6) {
-      if (col < 5) {
-        grid[row][col].textContent = e.key.toUpperCase();
-        enteredWord += grid[row][col].textContent;
-        col++;
-      }
-      else {
-        console.log("5 characters already typed");
-      }
-    }
-    else if (row < 6) {
-      if (e.key === 'Backspace' && col > 0) {
-        console.log("BACKSPACE PRESSED");
-        grid[row][--col].textContent = "";
-        enteredWord = enteredWord.slice(0, -1);
-      }
-      else if (e.key === 'Backspace' && col == 0) {
-        console.log("NOTHING TO ERASE");
-      }
-      else if (e.key === 'Enter' && col == 5) {
-        console.log("Enter key pressed and word checked if valid or not");
-        let res = await isValid(enteredWord);
-        if (res) {
-          console.log("VALID");
-          algorithm(enteredWord, wordToBeGuessed, row);
-          row++; col = 0;
-          enteredWord = "";
+    if(isCorrect === false && row!=6){
+      if (isAlphabet && row < 6) {
+        if (col < 5) {
+          grid[row][col].textContent = e.key.toUpperCase();
+          enteredWord += grid[row][col].textContent;
+          col++;
         }
-        else console.log("INVALID WORD");
+        else {
+          console.log("5 characters already typed");
+        }
       }
-      else if (e.key === 'Enter' && col != 5) {
-        console.log("ENTER KEY VALID 5 CHARACTERS");
-      }
-      else {
-        console.log("INVALID KEY PRESSED");
+      else if (row < 6) {
+        if (e.key === 'Backspace' && col > 0) {
+          console.log("BACKSPACE PRESSED");
+          grid[row][--col].textContent = "";
+          enteredWord = enteredWord.slice(0, -1);
+        }
+        else if (e.key === 'Backspace' && col == 0) {
+          console.log("NOTHING TO ERASE");
+        }
+        else if (e.key === 'Enter' && col == 5) {
+          console.log("Enter key pressed and word checked if valid or not");
+          let valid = await isValid(enteredWord);
+          if (valid) {
+            console.log("VALID");
+            let res = algorithm(enteredWord, wordToBeGuessed, row);
+            console.log(res);
+            if(res){
+              isCorrect = true;
+              result(isCorrect);
+            } 
+            row++; col = 0;
+            enteredWord = "";
+          }
+          else console.log("INVALID WORD");
+          if(isCorrect === false && row === 6){
+            result(isCorrect);
+          }
+        }
+        else if (e.key === 'Enter' && col != 5) {
+          console.log("ENTER KEY VALID 5 CHARACTERS");
+        }
+        else {
+          console.log("INVALID KEY PRESSED");
+        }
       }
     }
+    
     // console.log(enteredWord);
   });
+
+  
+
+  let result = (isCorrect) =>{
+    const heading = document.querySelector(".result-modal .result-heading");
+    const result_modal = document.querySelector('.result-modal');
+    const playAgainBtn = document.querySelector('.playAgain');
+    if(isCorrect===false){
+      heading.textContent="BETTER LUCK NEXT TIME!";
+    }
+    else{
+      heading.textContent="SPLENDID!";
+    }
+    // playAgainBtn.addEventListener("click", ()=>{
+    //   console.log("Button Clicked");
+    // }); 
+    
+    result_modal.showModal();
+    
+  };
 });
