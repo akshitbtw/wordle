@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // storing the occurrences of each character of the word to be guessed
-  let wordToBeGuessed;
+  let wordToBeGuessed, wordDetails;
   let randomWord = async () => {
     // let word ="";
     try {
@@ -112,15 +112,18 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   let isValid = async (enteredWord) => {
-    // console.log(wordToBeGuessed);
+    console.log(wordToBeGuessed);
     try {
       const result = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${enteredWord}`);
-      if (result.ok) return true;
+      if (result.ok){
+        wordDetails = result.json();
+        return true;
+      } 
       else return false;
     } catch (error) {
       console.log('There was an error', error);
     }
-    return true;
+    // return true;
   };
 
   document.addEventListener("keydown", async (e) => {
@@ -185,9 +188,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let result = (isCorrect) => {
     const heading = document.querySelector(".result-modal .result-heading");
+    const correctWord = document.querySelector(".result-modal .correctWord")
     const result_modal = document.querySelector('.result-modal');
+    // isValid(wordToBeGuessed);
+    // console.log(wordDetails.then().then());
     if (isCorrect === false) {
       heading.textContent = "BETTER LUCK NEXT TIME!";
+      correctWord.textContent = "The correct word was "+wordToBeGuessed;
     }
     else {
       heading.textContent = "SPLENDID!";
