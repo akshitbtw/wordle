@@ -16,11 +16,34 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // storing the occurrences of each character of the word to be guessed
-  let wordToBeGuessed = "trait";
-  wordToBeGuessed = wordToBeGuessed.toUpperCase();
-
-  let algorithm = (enteredWord, wordToBeGuessed, currentRow) => {
-    // console.log(enteredWord + " " + wordToBeGuessed);
+  let wordToBeGuessed;
+  let randomWord = async () => {
+    // let word ="";
+    try {
+      const result = await fetch('https://random-word-api.vercel.app/api?words=1&length=5')
+        .then((response) => response.json())
+        .then((obj) => {
+          // word = obj[0];
+          wordToBeGuessed=obj[0].toUpperCase();
+          // console.log(wordToBeGuessed);
+          // console.log(word);
+        });
+        // return word;
+      // console.log(result.json());
+      // wordToBeGuessed=result.toUpperCase();
+    } catch (error) {
+      console.log('There was an error', error);
+    }
+  };
+  // window.onload = async function () {
+  //   wordToBeGuessed = await randomWord();
+  //   console.log(wordToBeGuessed);
+  // };
+  // wordToBeGuessed = randomWord().then(value=>console.log(value));
+  randomWord();
+  // console.log(wordToBeGuessed);
+  let algorithm = (enteredWord, wordToBeGuessed, row) => {
+    // console.log(enteredWord + " " + wordToBeGuessed +" "+row);
     if (enteredWord === wordToBeGuessed) {
       for (let x = 0; x < 5; x++) {
         // grid[row][x].style.backgroundColor = 'green';
@@ -89,13 +112,14 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   let isValid = async (enteredWord) => {
-    // try{
-    //   const result = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${enteredWord}`);
-    //   if(result.ok) return true;
-    //   else return false;
-    //   }catch(error){
-    //   console.log('There was an error', error);
-    // }
+    // console.log(wordToBeGuessed);
+    try {
+      const result = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${enteredWord}`);
+      if (result.ok) return true;
+      else return false;
+    } catch (error) {
+      console.log('There was an error', error);
+    }
     return true;
   };
 
@@ -129,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let res = algorithm(enteredWord, wordToBeGuessed, row);
             if (res) {
               isCorrect = true;
-              if(e.key==='Enter'){
+              if (e.key === 'Enter') {
                 e.preventDefault();
               }
               result(isCorrect);
@@ -139,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
           else console.log("INVALID WORD");
           if (isCorrect === false && row === 6) {
-            if(e.key==='Enter'){
+            if (e.key === 'Enter') {
               e.preventDefault();
             }
             result(isCorrect);
@@ -174,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
     playAgainBtn.addEventListener("click", () => {
       window.location.reload();
     });
-    
+
   };
 });
 

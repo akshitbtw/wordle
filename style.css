@@ -92,11 +92,11 @@ main .grid-container * {
     opacity: 0.5;
 }
 
-.modal[open] {
+.modal[open], .result-modal[open] {
     animation: fade-in 500ms forwards;
 }
 
-.modal[open]::backdrop {
+.modal[open]::backdrop, .result-modal[open]::backdrop {
     animation: fade-in-backdrop 500ms forwards;
 }
 
