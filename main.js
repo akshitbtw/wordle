@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("keydown", async (e) => {
     const isAlphabet = /^[a-zA-Z]$/.test(e.key);
-    if(isCorrect === false && row!=6){
+    if (isCorrect === false && row != 6) {
       if (isAlphabet && row < 6) {
         if (col < 5) {
           grid[row][col].textContent = e.key.toUpperCase();
@@ -127,16 +127,21 @@ document.addEventListener("DOMContentLoaded", () => {
           if (valid) {
             console.log("VALID");
             let res = algorithm(enteredWord, wordToBeGuessed, row);
-            console.log(res);
-            if(res){
+            if (res) {
               isCorrect = true;
+              if(e.key==='Enter'){
+                e.preventDefault();
+              }
               result(isCorrect);
-            } 
+            }
             row++; col = 0;
             enteredWord = "";
           }
           else console.log("INVALID WORD");
-          if(isCorrect === false && row === 6){
+          if (isCorrect === false && row === 6) {
+            if(e.key==='Enter'){
+              e.preventDefault();
+            }
             result(isCorrect);
           }
         }
@@ -148,27 +153,33 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     }
-    
+
     // console.log(enteredWord);
   });
 
-  
 
-  let result = (isCorrect) =>{
+
+  let result = (isCorrect) => {
     const heading = document.querySelector(".result-modal .result-heading");
     const result_modal = document.querySelector('.result-modal');
-    const playAgainBtn = document.querySelector('.playAgain');
-    if(isCorrect===false){
-      heading.textContent="BETTER LUCK NEXT TIME!";
+    if (isCorrect === false) {
+      heading.textContent = "BETTER LUCK NEXT TIME!";
     }
-    else{
-      heading.textContent="SPLENDID!";
+    else {
+      heading.textContent = "SPLENDID!";
     }
-    // playAgainBtn.addEventListener("click", ()=>{
-    //   console.log("Button Clicked");
-    // }); 
-    
+
     result_modal.showModal();
+    const playAgainBtn = document.querySelector('.playAgain');
+    playAgainBtn.addEventListener("click", () => {
+      window.location.reload();
+    });
     
   };
 });
+
+// result_modal.addEventListener("keydown", (e)=>{
+//   if(e.key==='Enter'){
+//     e.preventDefault();
+//   }
+// });
